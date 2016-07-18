@@ -80,10 +80,11 @@ else if(!isset($_SESSION['admin']))
 
 <?php
 $tcolor=0;
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 
-$sql = mysql_query("SELECT * FROM managers");
+$sql ="SELECT * FROM managers";
+$result=mysqli_query($conn, $sql);
 ?>
 <table align="center" width="50px" height="102px" border="1" bgcolor="#562051">
 <thead>
@@ -92,7 +93,7 @@ $sql = mysql_query("SELECT * FROM managers");
 	<th>Username</th><th>Password</th><th>Manager Category</th><th>Edit/Delete</th>
 </thead>
 <?php
-while($row = mysql_fetch_array($sql))
+while($row =  mysqli_fetch_assoc($result))
 {
 ?>
 <tr align="center" class="<?php if($tcolor == 0)
@@ -110,7 +111,7 @@ while($row = mysql_fetch_array($sql))
 	<td><?php echo $row['address'];?></td>
 	<td><?php echo $row['contactno'];?></td>
 	<td><?php echo $row['gender'];?></td>
-	<td><?php echo $row['dob'];?></td>
+	<td><?php echo $row['DOB'];?></td>
 	<td><?php echo $row['email'];?></td>
 	<td><?php echo $row['qualification'];?></td>
 	<td><?php echo $row['uname'];?></td>

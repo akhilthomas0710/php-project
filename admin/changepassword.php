@@ -59,19 +59,24 @@ else if(!isset($_SESSION['admin']))
 </div>
 <!-- ####################################################################################################### -->
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 $cpword = $_POST["cpword"];
 $npword = $_POST["npword"];
-$select_password = mysql_query("SELECT id FROM admin WHERE pword='$cpword'");
-if(mysql_num_rows($select_password)==1)
+$sql = "SELECT id FROM admin WHERE pword='$cpword'";
+$result=mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($result);
+$id=$row ['id'];
+if(mysqli_num_rows($result)==1)
 {
-	$update_password = mysql_query("UPDATE admin SET pword = '$npword'");
+	$update_password ="UPDATE admin SET pword = '$npword' WHERE id='$id'";
+	$result1=mysqli_query($conn,$update_password);
+	
 	if($update_password)
 	{
 ?>
 	<script type="text/javascript">
-	alert("Password Changed Succssfully");
+	alert("Password Changed Succssfully...");
 	window.location.href="changepasswordform.php";
 	</script>
 <?php	

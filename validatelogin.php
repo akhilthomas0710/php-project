@@ -24,7 +24,7 @@
 $conn=mysqli_connect("localhost","root","","inventory system");
 $uname=$_POST["uname"];
 $pword=$_POST["pword"];
-echo $uname,$pword;
+//echo $uname,$pword;
 //$con=mysqli_connect("localhost","root","");
 //mysqli_select_db($con,"inventory system");
 
@@ -32,19 +32,23 @@ echo $uname,$pword;
 $sql_admin = "SELECT id FROM admin WHERE uname='$uname' AND pword='$pword' ";
 //$result = $conn->query($sql_admin);
 $result = mysqli_query($conn,$sql_admin);
-/*$sql_inventory_manager = "SELECT id FROM managers WHERE uname='$uname' AND pword='$pword' AND status='Inventory Manager'";
-$result2 = $con->query($sql_inventory_manager );
-$sql_sales_manager = "SELECT id FROM managers WHERE uname='$uname' AND pword='$pword' AND status='Sales Manager'";
-$result3 = $con->query($sql_sales_manager);
-$sql_sales_person = "SELECT id FROM managers WHERE uname='$uname' AND pword='$pword' AND status='Sales Person'";
-$result4 = $con->query($sql_sales_person);*/
+
+$sql_inventory_manager = "SELECT id FROM managers WHERE uname='$uname' AND pword='$pword' AND status='Inventory Manager'";
+$result2 = mysqli_query($conn,$sql_inventory_manager );
+
+$sql_sales_manager = "SELECT id FROM managers WHERE uname='$uname' AND pword='$pword' AND status='sales manager'";
+$result3 = mysqli_query($conn,$sql_sales_manager);
+
+$sql_sales_person = "SELECT id FROM managers WHERE uname='$uname' AND pword='$pword' AND status='sales person'";
+$result4 = mysqli_query($conn,$sql_sales_person);
+
 if(mysqli_num_rows($result)===1)
 {
 	session_start();
 	$_SESSION['admin']=$uname;
 	header("Location: admin/adminhome.php");
 }
-/*else if(mysqli_num_rows($result2)==1)
+else if(mysqli_num_rows($result2)==1)
 {
 	session_start();
 	$_SESSION['inventorymanager']=$uname;
@@ -61,12 +65,12 @@ else if(mysqli_num_rows($result4)==1)
 	session_start();
 	$_SESSION['salesperson']=$uname;
 	header("Location: sales person/salespersonhome.php");
-}*/
+}
 else
 {
 ?>
 <script type="text/javascript">	
-	alert("sadmin/addstoredetails.php");
+	alert("not valid uname or passwrd");
 </script>
 <?php
 }

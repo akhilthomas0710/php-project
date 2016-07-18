@@ -60,8 +60,8 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper col4" align="center">
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 $name=$_POST["name"];
 $address=$_POST["address"];
 $contactno=$_POST["contactno"];
@@ -78,24 +78,31 @@ $sq3=0;
 
 if($status=="Inventory Manager")
 {
-$sq1 = mysql_query("INSERT INTO managers VALUES('','$name','$address','$contactno','$gender','$dob','$email','$qualification','$uname','$pword','$status')");
+$sq1 = "INSERT INTO managers(id,name,address,contactno,gender,DOB,email,qualification,uname,pword,status) 
+              VALUES('','$name','$address','$contactno','$gender','$dob','$email','$qualification','$uname','$pword','$status')";
+mysqli_query($conn,$sq1);
 }
 
 if($status=="Sales Manager")
 {
-$sq2 = mysql_query("INSERT INTO managers VALUES('','$name','$address','$contactno','$gender','$dob','$email','$qualification','$uname','$pword','$status')");
+$sq2 = "INSERT INTO managers(id,name,address,contactno,gender,DOB,email,qualification,uname,pword,status) 
+              VALUES('','$name','$address','$contactno','$gender','$dob','$email','$qualification','$uname','$pword','$status')";
+mysqli_query($conn,$sq2);
 }
 
 if($status=="Sales Person")
 {
-$sq3 = mysql_query("INSERT INTO managers VALUES('','$name','$address','$contactno','$gender','$dob','$email','$qualification','$uname','$pword','$status')");
+$sq3 = "INSERT INTO managers (id,name,address,contactno,gender,DOB,email,qualification,uname,pword,status) 
+              VALUES('','$name','$address','$contactno','$gender','$dob','$email','$qualification','$uname','$pword','$status')";
+mysqli_query($conn,$sq3);
 }
 
 if($sq1 || $sq2 || $sq3)
 {
+	//echo $contactno;
 ?>
 <script type="text/javascript">
-	alert("Sales Manager Details Added to Database");
+	alert("Manager Details Added to Database");
 	window.location.href="addmanagerform.php";
 </script>
 <?php
@@ -109,6 +116,7 @@ else
 </script>
 <?php
 }
+
 ?>			
 
 </div>

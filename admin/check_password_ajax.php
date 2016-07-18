@@ -8,11 +8,12 @@
 <body>
 <?php
 $pword = $_GET["p"];
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+///mysql_select_db("inventory system");
 //$uname="admin";
-$check_password = mysql_query("SELECT id FROM admin WHERE pword='$pword'");
-if(mysql_num_rows($check_password)!=1)
+$result= "SELECT id FROM admin WHERE pword='$pword'";
+$check_password=mysqli_query($conn,$result);
+if(mysqli_num_rows($check_password)!=1)
 {
 ?>
 <font color="#FF0000">Invalid Password</font>

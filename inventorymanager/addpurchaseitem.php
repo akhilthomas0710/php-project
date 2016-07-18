@@ -68,8 +68,8 @@
 <div class="wrapper col4" align="center">
 	
 <?php
-mysql_connect("localhost","root","");
-$con = mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//$con = mysql_select_db("inventory system");
 /*if($con)
 	echo "Connected";
 else
@@ -125,12 +125,15 @@ $quantity5 = $_POST["quantity5"];
 $cost5 = $_POST["cost5"];
 $total5 = $_POST["total5"];
 $sellingprice5 = $_POST["sellingprice5"];
+
 if($itemid1!="")
 {	
-$sql1 = mysql_query("INSERT INTO purchase VALUES('','$itemid1','$itemname1','$category1','$description1','$date','$billno','$supplier','$address','$contact','$quantity1','$cost1','$sellingprice1','$total1','$mode')");
-$sq1 = mysql_query("INSERT INTO inventory VALUES('','$itemid1','$itemname1','$category1','$description1','$date','$billno','$supplier','$address','$contact','$quantity1','$cost1','$sellingprice1','$total1','$mode')");
+$sql1 ="INSERT INTO purchase VALUES('','$itemid1','$itemname1','$category1','$description1','$date','$billno','$supplier','$address','$contact','$quantity1','$cost1','$sellingprice1','$total1','$mode')";
+mysqli_query($conn,$sql1);
+
+//$sq1 = "INSERT INTO inventory VALUES('','$itemid1','$itemname1','$category1','$description1','$date','$billno','$supplier','$address','$contact','$quantity1','$cost1','$sellingprice1','$total1','$mode')");
 }
-if($itemid2!="")
+/*if($itemid2!="")
 {	
 $sql2 = mysql_query("INSERT INTO purchase VALUES('','$itemid2','$itemname2','$category2','$description2','$date','$billno','$supplier','$address','$contact','$quantity2','$cost2','$sellingprice2','$total2','$mode')");
 $sq2 = mysql_query("INSERT INTO inventory VALUES('','$itemid2','$itemname2','$category2','$description2','$date','$billno','$supplier','$address','$contact','$quantity2','$cost2','$sellingprice2','$total2','$mode')");
@@ -149,7 +152,7 @@ if($itemid5!="")
 {	
 $sql5 = mysql_query("INSERT INTO purchase VALUES('','$itemid5','$itemname5','$category5','$description5','$date','$billno','$supplier','$address','$contact','$quantity5','$cost5','$sellingprice5','$total5','$mode')");
 $sq5 = mysql_query("INSERT INTO inventory VALUES('','$itemid5','$itemname5','$category5','$description5','$date','$billno','$supplier','$address','$contact','$quantity5','$cost5','$sellingprice5','$total5','$mode')");
-}
+}*/
 if($sql1 || $sql2 || $sql3 || $sql4 || $sql5)
 {
 ?>

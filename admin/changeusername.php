@@ -59,17 +59,21 @@ else if(!isset($_SESSION['admin']))
 </div>
 <!-- ####################################################################################################### -->
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 $cuname = $_POST["cuname"];
 $nuname = $_POST["nuname"];
-$select_username = mysql_query("SELECT id FROM admin WHERE uname='$cuname'");
-if(mysql_num_rows($select_username)==1)
+$sql="SELECT id FROM admin WHERE uname='$cuname'";
+$result=mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($result);
+$id=$row ['id'];
+if(mysqli_num_rows($result)==1)
 {
-	$update_username = mysql_query("UPDATE admin SET uname = '$nuname'");
-	if($update_username)
+	$update_uname="UPDATE admin SET uname = '$nuname' WHERE id='$id'";
+	$result1=mysqli_query($conn,$update_uname);
+	
+	if($update_uname)
 	{
-	$_SESSION['admin']=$nuname;
 ?>
 	<script type="text/javascript">
 	alert("Username Changed Succssfully");

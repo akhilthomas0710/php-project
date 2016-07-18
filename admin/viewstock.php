@@ -93,10 +93,11 @@ else if(!isset($_SESSION['admin']))
 		</thead>
 		<?php
 		$tcolor=0;
-		mysql_connect("localhost","root","");
-		mysql_select_db("inventory system");
-		$sql = mysql_query("SELECT * FROM purchase");
-		while($row = mysql_fetch_array($sql))
+		$conn=mysqli_connect("localhost","root","","inventory system");
+		//mysql_select_db("inventory system");
+		$sql = "SELECT * FROM purchase";
+		$result=mysqli_query($conn, $sql);
+		while($row = mysqli_fetch_assoc($result))
 		{
 		?>
 		<tr align="center" class="<?php if($tcolor==0)
@@ -111,7 +112,7 @@ else if(!isset($_SESSION['admin']))
 											}?>">
 			<td><?php echo $row['itemid'];?></td>
 			<td><?php echo $row['itemname'];?></td>
-			<td><?php echo $row['itemcategory'];?></td>
+			<td><?php echo $row['category'];?></td>
 			<td><?php echo $row['sellingprice']." Rs/-";?></td>
 			<td><?php echo $row['quantity'];?></td>
 			<!--<td><form id="edititem" name="edititem" action="edititem.php" method="get">

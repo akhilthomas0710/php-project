@@ -8,11 +8,11 @@
 <body>
 <?php
 $uname = $_GET["n"];
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 //$uname="admin";
-$check_username = mysql_query("SELECT id FROM admin WHERE uname='$uname'");
-if(mysql_num_rows($check_username)!=1)
+$check_username = mysqli_query($conn,"SELECT id FROM admin WHERE uname='$uname'");
+if(mysqli_num_rows($check_username)!=1)
 {
 ?>
 <font color="#FF0000">Invalid Username</font>

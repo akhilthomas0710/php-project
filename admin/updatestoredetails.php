@@ -62,8 +62,8 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper col4" align="center">
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 $storename=$_POST["storename"];
 $address=$_POST["address"];
 $place=$_POST["place"];
@@ -72,7 +72,8 @@ $pin=$_POST["pin"];
 $phoneno=$_POST["phoneno"];
 $website=$_POST["website"];
 $email=$_POST["email"];
-$sql = mysql_query("UPDATE storedetails SET storename='$storename',address='$address',place='$place',city='$city',pin='$pin',phone='$phoneno',website='$website',email='$email'");
+$sql ="UPDATE storedetails SET storename='$storename',address='$address',place='$place',city='$city',pin='$pin',phone='$phoneno',website='$website',email='$email'";
+$result=mysqli_query($conn,$sql);
 if($sql)
 {
 ?>

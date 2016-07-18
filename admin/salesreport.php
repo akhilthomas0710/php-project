@@ -84,13 +84,13 @@ else if(!isset($_SESSION['admin']))
 
 <form name="reportform" id="reportform" method="post" action="viewsalesreport.php">
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 $fromdate = $_POST["fromdate"];
 $todate = $_POST["todate"];
 $tcolor=0;
-$sq = mysql_query("SELECT * FROM sales WHERE date>='$fromdate' AND date<='$todate'");
-if(mysql_num_rows($sq)<=0)
+$sq ="SELECT * FROM sales WHERE date>='$fromdate' AND date<='$todate'";
+if(mysqli_num_rows($sq)<=0)
 {
 ?>
 <script type="text/javascript">
@@ -99,7 +99,7 @@ if(mysql_num_rows($sq)<=0)
 </script>
 <?php
 }
-//$date="2014-04-16";
+//$date="2016-01-11";
 $sql = mysql_query("SELECT SUM(grandtotal) AS total FROM sales WHERE date>='$fromdate' AND date<='$todate'"); 
 //$count = mysql_query("SELECT count(*) AS no FROM sales WHERE date>='$fromdate' AND date<='$todate'");
 $items = mysql_query("SELECT * FROM sales WHERE date>='$fromdate' AND date<='$todate'");

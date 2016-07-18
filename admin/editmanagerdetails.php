@@ -96,11 +96,14 @@ function goto()
 </div>
 <!-- ####################################################################################################### -->
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 $id=$_GET["id"];
-$sql = mysql_query("SELECT * FROM managers WHERE id='$id'");
-$row = mysql_fetch_array($sql);
+$sql = "SELECT * FROM managers WHERE id='$id'";
+$result=mysqli_query($conn, $sql);
+
+$row =  mysqli_fetch_assoc($result);
+
 ?>
 <div class="wrapper col4" align="center">
 			
@@ -111,6 +114,7 @@ $row = mysql_fetch_array($sql);
 	<tr>
 		<td colspan="6">&nbsp;</td>
 	</tr>
+	
 	<tr align="center">
 		<td align="right">Name</td>
 		<td align="left"><input type="text" name="name" id="name" value="<?php echo $row['name'];?>"/></td>
@@ -129,7 +133,7 @@ $row = mysql_fetch_array($sql);
 						 <input type="radio" name="gender" id="female" value="Female" onclick="return femalegender();"/>Female
 						 </td>
 		<td align="right">Date of Birth</td>
-		<td align="left"><input type="text" name="dob" id="dob" value="<?php echo $row['dob'];?>" />(yyyy/mm/dd)*</td>
+		<td align="left"><input type="text" name="dob" id="dob" value="<?php echo $row['DOB'];?>" />(yyyy/mm/dd)*</td>
 		<td align="right">Email Id</td>
 		<td align="left"><input type="text" name="mail" id="mail" value="<?php echo $row['email'];?>"/></td>
 	</tr>

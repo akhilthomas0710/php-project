@@ -27,7 +27,7 @@ else
 {
 ?>
 <script type="text/javascript">	
-	window.location.href="admin/addstoredetails.php";
+	window.location.href="admin/addstoredetailsform.php";
 </script>
 <?php
 }

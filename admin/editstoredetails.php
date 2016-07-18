@@ -90,11 +90,13 @@ function goto()
 <div class="wrapper col4" align="center">
 			
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("inventory system");
+$conn=mysqli_connect("localhost","root","","inventory system");
+//mysql_select_db("inventory system");
 
-$sql = mysql_query("SELECT * FROM storedetails");
-$row = mysql_fetch_array($sql);
+$sql ="SELECT * FROM storedetails";
+$result=mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($result);
+
 ?>			
 	<table align="center" border="0" bgcolor="#562051">
 	<tr bgcolor="#990066" >
@@ -123,7 +125,7 @@ $row = mysql_fetch_array($sql);
 		<td align="right">Pin</td>
 		<td align="left"><input type="text" name="pin" id="pin" value="<?php echo $row['pin'];?>"/><span class="c" id="s5"></span></td>
 		<td align="right">Phone No</td>
-		<td align="left"><input type="text" name="phoneno" id="phoneno" value="<?php echo $row['phone'];?>"/><span class="c" id="s6"></span></td>
+		<td align="left"><input type="text" name="phoneno" id="phoneno" value="<?php echo $row['phoneno'];?>"/><span class="c" id="s6"></span></td>
 	</tr>
 	<tr>
 		<td colspan="6">&nbsp;</td>

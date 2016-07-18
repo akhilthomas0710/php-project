@@ -461,11 +461,12 @@ function goto()
       	</tr>
     </table>-->
 <?php
-	mysql_connect("localhost","root","");
-	mysql_select_db("inventory system");
+	$conn=mysqli_connect("localhost","root","","inventory system");
+	//mysql_select_db("inventory system");
 	$billno = 101;
-	$sql = mysql_query("SELECT billno FROM purchase ORDER BY id DESC LIMIT 1");
-	while($row = mysql_fetch_array($sql))
+	$sql ="SELECT billno FROM purchase ORDER BY id DESC LIMIT 1";
+	$result=mysqli_query($conn,$sql);
+	while($row = mysqli_fetch_assoc($result))
 	{
 		$billno = $row['billno'];
 		$billno = $billno+1;
